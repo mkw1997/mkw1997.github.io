@@ -73,25 +73,20 @@ nav a:hover {
 }
 
 .hero {
-  padding: 110px 0 96px;
+  padding: 110px 0 90px;
   border-top: 0;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-}
-
 .hero h1 {
-  max-width: 920px;
+  max-width: 960px;
   margin: 12px 0 28px;
-  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
   line-height: 1.02;
   letter-spacing: -0.055em;
 }
 
 .hero-copy {
-  max-width: 760px;
+  max-width: 800px;
   margin: 0;
   color: var(--muted);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
@@ -134,10 +129,37 @@ nav a:hover {
   color: #101216;
 }
 
-.button.secondary {
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 68px;
+  overflow: hidden;
   border: 1px solid var(--line);
-  background: transparent;
-  color: var(--text);
+  border-radius: 14px;
+  background: var(--line);
+}
+
+.fact {
+  min-height: 145px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--surface);
+}
+
+.fact strong {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.fact span {
+  max-width: 230px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
 }
 
 section {
@@ -147,7 +169,7 @@ section {
 
 h2 {
   margin: 0;
-  max-width: 760px;
+  max-width: 780px;
   font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1.12;
   letter-spacing: -0.035em;
@@ -170,6 +192,10 @@ p {
   align-items: start;
 }
 
+.compact-section {
+  align-items: center;
+}
+
 .section-copy {
   color: var(--muted);
   font-size: 1.05rem;
@@ -179,38 +205,71 @@ p {
   margin-bottom: 0;
 }
 
-.experience-card {
-  margin-top: 34px;
-  padding: 30px;
+.timeline {
+  margin-top: 42px;
+  border-top: 1px solid var(--line);
+}
+
+.timeline-item {
+  position: relative;
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 40px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 54px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.experience-card p,
-.card p,
-.work-item p,
-.capability-card p,
-.contact-panel p {
-  color: var(--muted);
+.timeline-item.current::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 44px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text);
 }
 
-.card-label {
-  margin-bottom: 4px;
-  font-size: 0.78rem;
+.timeline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-date,
+.timeline-company {
+  color: #8f98a5;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #8f98a5 !important;
+}
+
+.timeline-company {
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+  font-size: 1.55rem;
+  letter-spacing: -0.025em;
+}
+
+.timeline-content > p,
+.card p,
+.capability-card p {
+  color: var(--muted);
 }
 
 .clean-list {
   margin: 22px 0 0;
   padding-left: 20px;
   color: var(--muted);
+}
+
+.clean-list.compact {
+  margin-top: 18px;
 }
 
 .clean-list li + li {
@@ -260,7 +319,7 @@ p {
 }
 
 .card {
-  min-height: 260px;
+  min-height: 275px;
   padding: 26px;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -274,28 +333,6 @@ p {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-}
-
-.work-item {
-  padding: 26px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-}
-
-.contact-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 40px;
-}
-
-.contact-panel > div {
-  max-width: 700px;
-}
-
-.contact-panel p {
-  margin: 14px 0 0;
 }
 
 footer {
@@ -330,16 +367,30 @@ footer {
     padding: 66px 0;
   }
 
+  .hero-facts,
   .two-column,
-  .experience-card,
+  .timeline-item,
   .capability-grid,
   .card-grid {
     grid-template-columns: 1fr;
   }
 
+  .hero-facts {
+    gap: 1px;
+    margin-top: 48px;
+  }
+
+  .fact {
+    min-height: 120px;
+  }
+
   .two-column,
-  .experience-card {
-    gap: 28px;
+  .timeline-item {
+    gap: 26px;
+  }
+
+  .timeline-item.current::before {
+    display: none;
   }
 
   .card {
@@ -348,11 +399,6 @@ footer {
 
   .card-number {
     margin-bottom: 24px;
-  }
-
-  .contact-panel {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
 
@@ -366,12 +412,11 @@ footer {
   }
 
   .hero h1 {
-    font-size: clamp(2.5rem, 14vw, 4rem);
+    font-size: clamp(2.45rem, 13.5vw, 4rem);
   }
 
   .actions,
-  .actions .button,
-  .contact-panel .button {
+  .actions .button {
     width: 100%;
   }
 
