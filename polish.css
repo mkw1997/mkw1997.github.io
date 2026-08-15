@@ -1,0 +1,74 @@
+/* Small progressive enhancements layered over the main stylesheet. */
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav a {
+  padding: 8px 0;
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+:focus-visible {
+  outline: 2px solid #f3f4f6;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+@media (max-width: 620px) {
+  .nav-wrap {
+    gap: 10px;
+  }
+
+  nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 18px;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .resume-document {
+    padding: 28px 20px;
+  }
+
+  .resume-role-head,
+  .resume-heading {
+    gap: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .button:hover,
+  .link-card:hover {
+    transform: none;
+  }
+}
