@@ -50,7 +50,7 @@
           leadership, and technology-enabled work, email is the best way to reach me.
         </p>
         <div class="actions">
-          <a class="button primary" href="mailto:matt@mattkwalker.com" target="_blank" rel="noopener noreferrer">Email Matt</a>
+          <a class="button primary" href="mailto:matt@mattkwalker.com" onclick="return openEmailInNewTab(event, this.href);">Email Matt</a>
         </div>
       </div>
     </section>
@@ -82,5 +82,23 @@
       <span>mattkwalker.com</span>
     </div>
   </footer>
+
+  <script>
+    function openEmailInNewTab(event, mailtoUrl) {
+      event.preventDefault();
+
+      // Open a real browsing context first, then hand the mailto URL to it.
+      // This is more reliable with browser-based protocol handlers such as Gmail
+      // than relying on target="_blank" directly on a mailto link.
+      const emailTab = window.open('about:blank', '_blank');
+
+      if (emailTab) {
+        emailTab.opener = null;
+        emailTab.location.href = mailtoUrl;
+      }
+
+      return false;
+    }
+  </script>
 </body>
 </html>
